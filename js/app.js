@@ -11,7 +11,6 @@ function init() {
 }
 
 function reloadProgress() {
-    // 改用 localStorage 讀取
 	var progress = localStorage.getItem('progress');
 
 	if(progress && progress.length){
@@ -21,7 +20,7 @@ function reloadProgress() {
 			if(progress[id] == 1) {
 				var el = document.querySelector("input[data-key='" + id + "']");
 				
-				if(el) { // 加上判斷以免找不到元素報錯
+				if(el) { 
                     el.checked = true;
                 }
 			}
@@ -68,7 +67,6 @@ function saveProgress() {
 		progress[id] = checked;
 	}
 
-    // 改用 localStorage 儲存，並將物件轉為 JSON 字串
 	localStorage.setItem('progress', JSON.stringify(progress));
 }
 
@@ -100,13 +98,11 @@ function countProgress() {
 }
 
 function initCookieAlert() {
-    // 改用 localStorage 檢查是否已經關閉過提示
 	var hiddenCookieAlert = localStorage.getItem('hideCookieAlert');
 
 	if(! hiddenCookieAlert) {
 		document.getElementById("hideCookieAlert").addEventListener('click', function(event) {
 			event.preventDefault();
-            // 改用 localStorage 記錄已關閉
 			localStorage.setItem('hideCookieAlert', true);
 			document.getElementById("cookieAlert").style['display'] = 'none';
 		});
